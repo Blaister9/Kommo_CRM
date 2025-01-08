@@ -1,0 +1,22 @@
+# Ignorar node_modules
+node_modules/
+
+# Ignorar archivos de entorno
+.env
+
+# Ignorar logs
+logs/
+*.log
+
+# Ignorar archivos de configuración local
+*.local
+
+# Ignorar archivos de IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignorar archivos generados
+dist/
+build/
