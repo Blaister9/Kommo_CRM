@@ -112,8 +112,10 @@ class KommoClient {
     async updateLead(leadId, leadData) {
         try {
             console.log('Actualizando lead...');
-            console.log('Cuerpo de la solicitud:', leadData);
-            const response = await this.axiosInstance.patch(`/leads/${leadId}`, leadData);
+            console.log('Cuerpo de la solicitud:', [leadData]);
+    
+            // Asegúrate de que el cuerpo de la solicitud sea un arreglo de objetos
+            const response = await this.axiosInstance.patch('/leads', [leadData]);
             console.log('Lead actualizado correctamente:', response.data);
             return response.data;
         } catch (error) {
@@ -122,7 +124,7 @@ class KommoClient {
                 response: error.response?.data,
                 status: error.response?.status,
                 headers: error.response?.headers,
-                validationErrors: error.response?.data['validation-errors'] // Log de errores de validación
+                validationErrors: error.response?.data['validation-errors']
             });
     
             // Mostrar los errores de validación en detalle
@@ -134,7 +136,7 @@ class KommoClient {
     
             throw error;
         }
-    } 
+    }
 }
 
 module.exports = new KommoClient();

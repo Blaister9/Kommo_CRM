@@ -22,24 +22,22 @@ class PaymentController {
             }
 
             // Crear el cuerpo de la solicitud para actualizar el lead
-            const leadData = [
-                {
-                    id: leadId,
-                    custom_fields_values: [
-                        {
-                            field_id: amountField.id, // Usa el field_id del campo "Monto"
-                            values: [{ value: amount }]
-                        },
-                        {
-                            field_id: paymentMethodField.id, // Usa el field_id del campo "Método de Pago"
-                            values: [{ value: paymentMethod }]
-                        }
-                    ]
-                }
-            ];
+            const leadData = {
+                id: leadId,
+                custom_fields_values: [
+                    {
+                        field_id: amountField.id, // Usa el field_id del campo "Monto"
+                        values: [{ value: amount }]
+                    },
+                    {
+                        field_id: paymentMethodField.id, // Usa el field_id del campo "Método de Pago"
+                        values: [{ value: paymentMethod }]
+                    }
+                ]
+            };
 
             // Log del cuerpo de la solicitud
-            console.log('Cuerpo de la solicitud:', leadData);
+            console.log('Cuerpo de la solicitud:', [leadData]);
 
             // Enviar la solicitud para actualizar el lead
             const response = await kommoClient.updateLead(leadId, leadData);
